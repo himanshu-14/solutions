@@ -1,26 +1,15 @@
 function nqueens(n, r, board) {
-	if (r == n - 1) {
+	
 		for (var i = 0; i < n; i++)
 			if (!attacked(n, r, i, board)) {
 				board[r][i] = 1;
+				if(r==n-1)
 				print(n,r,board);
+				else
+				nqueens(n,r+1,board);				
+				board[r][i]=0;
 			}
 		return;
-	}
-	else
-	{
-		for(var i=0;i<n;i++)
-		{
-			if(!attacked(n,r,i,board))
-			{
-				board[r][i]=1;
-				nqueens(n,r+1,board);
-				board[r][i]=0;
-				
-			}
-		}
-		return;//go back after trying all routes
-	}
 
 }
 function attacked(n,r,i,board)
@@ -52,7 +41,8 @@ function print(n,r,board)
 		
 }
 board=[];
-var n=process.argv[2];
+console.log(process.argv);
+var n=parseInt(process.argv[2]);
 for(var x=0;x<n;x++)
 {
 	var row=[];
